@@ -46,7 +46,7 @@ const signalNodes = [
     no: "02",
     title: "Financial Market",
     org: "华创证券",
-    meta: "Fund Indicators / SWOT / Short-video Marketing",
+    meta: "Fund Tracking / SWOT / Video Marketing Scan",
     x: 68,
     y: 24,
     tone: "blue",
@@ -119,15 +119,15 @@ const notes = [
     no: "02",
     signalId: "finance",
     nodeLabel: "FINANCIAL MARKET",
-    theme: "FINANCIAL MARKET",
+    theme: "FINANCIAL MARKET SIGNALS",
     company: "华创证券",
     role: "市场分析助理",
     time: "2025.07 - 2025.09",
     tone: "blue",
-    defaultLine: "Fund Indicators · SWOT · Short-video Marketing",
-    signal: "基金产品表现、头部券商短视频营销、用户互动数据",
-    method: "Excel 分析、SWOT、竞品对比、趋势图表制作",
-    output: "市场分析报告、可视化图表和短视频脚本支持",
+    defaultLine: "Fund Tracking · SWOT · Video Marketing Scan",
+    signal: "基金产品表现、头部券商短视频营销、用户互动数据。",
+    method: "Excel 分析、竞品对比、SWOT、趋势图表制作。",
+    output: "市场分析报告、可视化图表、短视频脚本支持。",
     tags: ["金融产品", "Excel 分析", "SWOT", "竞品研究", "趋势报告"],
   },
   {
@@ -561,12 +561,31 @@ function FieldNotes({ activeSignal, setActiveSignal, setCursor }) {
 }
 
 function PlayLayer({ note }) {
-  if (note.signalId === "beauty") return <BeautySignalPack />;
-  if (note.signalId === "finance") return <FinanceDataSlice />;
-  return <TalentMappingBoard />;
+  if (note.signalId === "beauty") return <BeautySignalPack note={note} />;
+  if (note.signalId === "finance") return <FinancialSignalNote note={note} />;
+  return <TalentMappingBoard note={note} />;
 }
 
-function BeautySignalPack() {
+function NoteSignalGrid({ note }) {
+  return (
+    <div className="noteSignalGrid">
+      <div>
+        <span>SIGNAL</span>
+        <p>{note.signal}</p>
+      </div>
+      <div>
+        <span>METHOD</span>
+        <p>{note.method}</p>
+      </div>
+      <div>
+        <span>OUTPUT</span>
+        <p>{note.output}</p>
+      </div>
+    </div>
+  );
+}
+
+function BeautySignalPack({ note }) {
   const cards = [
     ["Product Insight", "新品趋势、竞品卖点、试用反馈"],
     ["Retail Data", "销售库存、定价监测、大促观察"],
@@ -574,6 +593,7 @@ function BeautySignalPack() {
   ];
   return (
     <div className="playLayer beautyPack">
+      <NoteSignalGrid note={note} />
       {cards.map(([title, text]) => (
         <div className="beautyMiniCard" key={title}>
           <small>{title}</small>
@@ -584,37 +604,29 @@ function BeautySignalPack() {
   );
 }
 
-function FinanceDataSlice() {
-  const [activeMetric, setActiveMetric] = useState("NAV Growth");
-  const [label, text] = financeMetrics[activeMetric];
+function FinancialSignalNote({ note }) {
   return (
-    <div className="playLayer dataSlice">
-      <svg viewBox="0 0 220 72" aria-hidden="true">
-        <polyline points="4,56 34,48 64,51 94,32 126,36 158,18 216,25" />
-      </svg>
-      <div className="metricChips">
-        {Object.keys(financeMetrics).map((metric) => (
-          <button className={activeMetric === metric ? "active" : ""} key={metric} onClick={(event) => {
-            event.stopPropagation();
-            setActiveMetric(metric);
-          }}>
-            {metric}
-          </button>
-        ))}
-      </div>
-      <div className="metricReadout">
-        <small>{label}</small>
-        <p>{text}</p>
+    <div className="playLayer dataSlice financialSignalNote">
+      <div className="financialNotePaper">
+        <div className="financialNoteHead">
+          <small>FINANCIAL SIGNAL NOTE</small>
+          <span>Market Research Fragment</span>
+        </div>
+        <svg viewBox="0 0 220 58" aria-hidden="true">
+          <polyline points="4,42 34,35 64,38 94,25 126,29 158,17 216,23" />
+        </svg>
+        <NoteSignalGrid note={note} />
       </div>
     </div>
   );
 }
 
-function TalentMappingBoard() {
+function TalentMappingBoard({ note }) {
   const [activeTalent, setActiveTalent] = useState("Brand Positioning");
   const [stamped, setStamped] = useState(false);
   return (
     <div className="playLayer talentBoard">
+      <NoteSignalGrid note={note} />
       <svg viewBox="0 0 220 96" aria-hidden="true">
         <path d="M24 62 C64 20 126 26 184 68" />
         <path d="M42 74 C86 82 128 68 168 28" />

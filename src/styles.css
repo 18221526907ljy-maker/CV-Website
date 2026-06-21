@@ -5,13 +5,13 @@
   --pitch: #12120f;
   --graphite: #736e66;
   --line-tone: #c8bfb3;
-  --mineral: #4f7480;
-  --data-blue: #2f6570;
+  --mineral: #008fa3;
+  --data-blue: #006d77;
   --olive: #d7e35f;
   --gold: #d7e35f;
   --moss-ink: #4f5a32;
-  --rose: #d84f8e;
-  --mauve: #8172a8;
+  --rose: #e83e8c;
+  --mauve: #8b5fbf;
   --lichen: #4f9360;
   --clay: #c28a38;
   --line: rgba(18, 18, 15, 0.16);
@@ -1040,10 +1040,10 @@ dd {
 .fieldNote.blue::before {
   width: 170px;
   background:
-    linear-gradient(135deg, rgba(47, 107, 255, 0.12), rgba(47, 107, 255, 0.035)),
+    linear-gradient(135deg, rgba(0, 143, 163, 0.12), rgba(0, 143, 163, 0.035)),
     rgba(242, 239, 231, 0.2);
-  content: "DATA SLICE / FUND INDICATORS / SWOT";
-  color: rgba(47, 107, 255, 0.38);
+  content: "FINANCIAL SIGNAL NOTE / FUND TRACKING / SWOT";
+  color: rgba(0, 143, 163, 0.42);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -1103,7 +1103,7 @@ dd {
 
 .fieldNote.blue:hover,
 .fieldNote.blue.open {
-  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(79, 116, 128, 0.12));
+  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(0, 143, 163, 0.08));
 }
 
 .fieldNote.mauve:hover,
@@ -1219,7 +1219,7 @@ dd {
 
 .fieldNote.open .playLayer,
 .fieldNote:hover .playLayer {
-  max-height: 340px;
+  max-height: 520px;
   margin-top: 30px;
   opacity: 1;
   transform: translateY(0);
@@ -1240,6 +1240,12 @@ dd {
   background: rgba(242, 239, 231, 0.72);
   box-shadow: 0 18px 38px rgba(11, 11, 10, 0.08);
   transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.beautyPack .noteSignalGrid,
+.talentBoard .noteSignalGrid {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
 }
 
 .beautyMiniCard:nth-child(1) {
@@ -1282,18 +1288,95 @@ dd {
   color: var(--mineral);
 }
 
+.financialSignalNote {
+  max-width: 780px;
+}
+
+.financialNotePaper {
+  position: relative;
+  border-top: 2px solid currentColor;
+  padding: 16px 18px 18px;
+  background:
+    linear-gradient(90deg, rgba(0, 143, 163, 0.045) 1px, transparent 1px),
+    linear-gradient(rgba(0, 143, 163, 0.04) 1px, transparent 1px),
+    rgba(242, 239, 231, 0.72);
+  background-size: 18px 18px;
+  box-shadow: 0 18px 42px rgba(11, 11, 10, 0.07);
+}
+
+.financialNotePaper::after {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  content: "SCAN";
+  border: 1px solid rgba(0, 143, 163, 0.42);
+  padding: 5px 7px;
+  color: var(--mineral);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  transform: rotate(4deg);
+}
+
+.financialNoteHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 10px;
+  color: currentColor;
+}
+
+.financialNoteHead small {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.financialNoteHead span {
+  color: var(--graphite);
+  font-size: 11px;
+}
+
 .dataSlice svg {
-  width: min(100%, 360px);
-  height: 84px;
-  margin-bottom: 14px;
+  width: min(100%, 300px);
+  height: 56px;
+  margin: 2px 0 12px;
 }
 
 .dataSlice polyline {
   fill: none;
   stroke: currentColor;
-  stroke-width: 3;
+  stroke-width: 1.7;
   stroke-dasharray: 320;
   animation: mapDraw 1400ms ease both;
+  opacity: 0.78;
+}
+
+.noteSignalGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.noteSignalGrid div {
+  border-top: 1px solid color-mix(in srgb, currentColor 58%, transparent);
+  padding-top: 12px;
+}
+
+.noteSignalGrid span {
+  display: block;
+  margin-bottom: 8px;
+  color: currentColor;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.noteSignalGrid p {
+  margin: 0;
+  color: var(--graphite);
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .metricChips {
@@ -1327,13 +1410,13 @@ dd {
 
 .talentBoard {
   position: relative;
-  min-height: 178px;
+  min-height: 268px;
   color: var(--mauve);
 }
 
 .talentBoard svg {
   position: absolute;
-  inset: 10px 180px auto 0;
+  inset: 118px 180px auto 0;
   width: 250px;
   height: 118px;
   pointer-events: none;
@@ -1350,6 +1433,7 @@ dd {
 .talentNodeGrid {
   position: relative;
   z-index: 1;
+  margin-top: 18px;
   display: grid;
   width: min(440px, 100%);
   grid-template-columns: repeat(2, minmax(0, 1fr));
