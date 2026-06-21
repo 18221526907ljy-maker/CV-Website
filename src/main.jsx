@@ -11,10 +11,10 @@ const profile = {
 
 const sections = [
   ["00", "首页", "home"],
-  ["01", "洞察", "field-notes"],
-  ["02", "案例", "case-files"],
+  ["01", "笔记", "field-notes"],
+  ["02", "方法", "case-files"],
   ["03", "工具", "tool-system"],
-  ["04", "关于", "manifesto"],
+  ["04", "判断", "manifesto"],
   ["05", "联系", "contact"],
 ];
 
@@ -72,7 +72,7 @@ const signalNodes = [
     no: "04",
     title: "Data & Tools",
     org: "Research, Analysis, Communication, Build",
-    meta: "Tool Matrix / Data Network / Structured Judgment",
+    meta: "Tool Network / Data Evidence / Structured Judgment",
     x: 82,
     y: 76,
     tone: "moss",
@@ -198,14 +198,6 @@ const tools = [
     tone: "gold",
   },
 ];
-
-const financeMetrics = {
-  "NAV Growth": ["METHOD", "追踪基金净值增长，拆解产品表现。"],
-  "Annualized Return": ["METHOD", "比较年化回报率，辅助判断竞争位置。"],
-  "Market Share": ["SIGNAL", "观察市场占有率变化与头部产品强弱。"],
-  SWOT: ["METHOD", "把竞品优劣势整理为可沟通分析框架。"],
-  "Audience Engagement": ["OUTPUT", "支持短视频脚本与开户参与度优化。"],
-};
 
 const talentNodes = {
   "Brand Positioning": "分析品牌市场定位与组织需求。",
@@ -357,20 +349,17 @@ function Hero({ activeSignal, setActiveSignal, setCursor }) {
           <p>Beauty Retail<br />Financial Market<br />Brand & Talent<br />Data & Tools</p>
         </aside>
         <div className="heroTitleBlock">
-          <p className="sectionLabel revealDelay1">Living Signal Archive / 生长型市场信号档案</p>
+          <p className="sectionLabel revealDelay1">市场信号桌 / Signal Desk</p>
           <h1 className="nameHero revealDelay2">
             <span>{profile.cnName}</span>
             <em>{profile.enName}</em>
           </h1>
-          <div className="motionTitle" aria-label="LIVING SIGNAL ARCHIVE">
-            <span>LIVING</span>
-            <span className="signalWord">SIGNAL</span>
-            <span className="roomWord">ARCHIVE</span>
+          <div className="motionTitle" aria-label="SIGNAL DESK">
+            <span>SIGNAL</span>
+            <span className="signalWord">DESK</span>
           </div>
-          <h2 className="revealDelay3">Market Intelligence Atelier</h2>
-          <p className="heroLead revealDelay4">
-            我把美妆零售、金融产品分析与数字健康项目中的数据、竞品与用户反馈，整理成能够支持判断的市场洞察。
-          </p>
+          <h2 className="revealDelay3">Signal Desk / 市场信号桌</h2>
+          <p className="heroLead revealDelay4">我把美妆零售、金融产品分析与品牌研究中的数据、竞品与用户反馈，整理成能够支持判断的市场洞察。</p>
           <div className="keywordRail revealDelay5">
             {["数字营销", "市场洞察", "消费者研究", "数据分析", "美妆零售", "AI 辅助产品设计"].map((word) => (
               <span key={word}>{word}</span>
@@ -409,8 +398,8 @@ function SignalMap({ activeSignal, setActiveSignal, setCursor }) {
       style={{ "--px": `${parallax.x}px`, "--py": `${parallax.y}px` }}
     >
       <div className="boardHeader">
-        <span>Signal Map</span>
-        <span>Core Nodes / 04</span>
+        <span>Signal Desk Map</span>
+        <span>Desk Nodes / 04</span>
       </div>
       <div className="mapCanvas">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -430,7 +419,7 @@ function SignalMap({ activeSignal, setActiveSignal, setCursor }) {
             onFocus={() => setActiveSignal(node.id)}
             onMouseEnter={(event) => {
               setActiveSignal(node.id);
-              setCursor({ show: true, text: node.id === "tools" ? "TRACE TOOLS" : `OPEN ${node.title.toUpperCase()}`, x: event.clientX, y: event.clientY });
+              setCursor({ show: true, text: node.id === "tools" ? "TRACE TOOLS" : "OPEN SIGNAL", x: event.clientX, y: event.clientY });
             }}
             style={{ left: `${node.x}%`, top: `${node.y}%`, animationDelay: `${index * 140 + 320}ms` }}
           >
@@ -505,17 +494,17 @@ function FieldNotes({ activeSignal, setActiveSignal, setCursor }) {
 
   return (
     <section className="section fieldNotes shell" id="field-notes">
-      <MiniSignalEcho title="SIGNAL MAP / CORE NOTES" ids={signalEchoGroups.field} activeSignal={activeSignal} />
+      <MiniSignalEcho title="SIGNAL DESK / CORE NOTES" ids={signalEchoGroups.field} activeSignal={activeSignal} />
       <SectionHeading
         index="01"
-        label="FIELD NOTES"
+        label="SIGNAL NOTES"
         title="洞察笔记"
-        text="三组核心职业信号从首页 Map 中展开：美妆零售、金融市场、品牌与人才研究。"
+        text="四个核心节点从首页 Signal Desk 展开：美妆信号包、金融市场笔记、人才地图与工具网络共同构成我的市场研究桌面。"
       />
       <div className="noteList playableNotes">
         {notes.map((note) => {
           const isOpen = openNote === note.no;
-          const cursorText = note.signalId === "beauty" ? "OPEN BEAUTY SIGNAL" : note.signalId === "finance" ? "TRACE FINANCE SIGNAL" : "VIEW TALENT MAP";
+          const cursorText = note.signalId === "beauty" ? "OPEN SIGNAL" : note.signalId === "finance" ? "TRACE NOTE" : "VIEW MAP";
           return (
             <article
               className={`fieldNote playableNote ${note.tone} ${isOpen ? "open" : ""}`}
@@ -666,8 +655,8 @@ function CaseFiles({ setCursor }) {
         <SupportingEcho />
         <SectionHeading
           index="02"
-          label="SUPPORTING CASE FILES"
-          title="方法能力补充"
+          label="SUPPORTING CASES"
+          title="方法补充"
           text="除实习经历外，以下项目用于补充展示我在市场调研、竞品分析、产品架构和 AI 辅助开发方面的方法能力。"
         />
         <div className="caseDrawerList supportingCases">
@@ -680,16 +669,16 @@ function CaseFiles({ setCursor }) {
                 key={item.fullTitle}
                 onMouseEnter={(event) => {
                   setOpenCase(item.no);
-                  setCursor({ show: true, text: "EXPAND SIDE CASE", x: event.clientX, y: event.clientY });
+                  setCursor({ show: true, text: "EXPAND CASE", x: event.clientX, y: event.clientY });
                 }}
                 onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
                 onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
                 onClick={() => setOpenCase(isOpen ? "" : item.no)}
               >
                 <div className="drawerLabel">
-                  <span>SIDE CASE {item.no}</span>
+                  <span>CASE {item.no}</span>
                   <strong>{item.role}</strong>
-                  <em>SUPPORTING EVIDENCE</em>
+                  <em>METHOD EVIDENCE</em>
                 </div>
                 <div className="drawerTitle">
                   <h3>{item.fullTitle}</h3>
@@ -741,12 +730,12 @@ function ToolSystem({ activeSignal, setActiveSignal, setCursor }) {
       data-signal-target="tools"
       onMouseEnter={() => setActiveSignal("tools")}
     >
-      <MiniSignalEcho title="SIGNAL MAP / DATA & TOOLS" ids={signalEchoGroups.tools} activeSignal={activeSignal} />
+      <MiniSignalEcho title="SIGNAL DESK / DATA & TOOLS" ids={signalEchoGroups.tools} activeSignal={activeSignal} />
       <SectionHeading
         index="03"
-        label="TOOL MATRIX"
-        title="工具矩阵"
-        text="Data & Tools 节点的展开网络：研究、分析、表达与搭建共同构成我的工作系统。"
+        label="TOOL NETWORK"
+        title="工具网络"
+        text="Data & Tools 节点展开为桌面上的能力网络：Research、Analysis、Communication、Build 互相连接，支撑信号整理与判断输出。"
       />
       <div className={`abilityNetwork mapLinked hasActive active-${activeTool.toLowerCase()}`}>
         <div className="matrixCore">DATA & TOOLS<br />NODE 04</div>
@@ -816,7 +805,7 @@ function MiniSignalEcho({ title, ids, activeSignal }) {
 function SupportingEcho() {
   return (
     <aside className="miniSignalEcho supportingEcho" aria-label="Supporting Evidence">
-      <p>SUPPORTING EVIDENCE</p>
+      <p>METHOD EVIDENCE</p>
       <div>
         <button className="lichen active" type="button">
           <i />
@@ -838,10 +827,10 @@ function Manifesto() {
       <div className="shell manifestoGrid">
         <div className="manifestoIndex">
           <span>04</span>
-          <p>MANIFESTO / Living Signal Archive</p>
+          <p>ABOUT / Signal Desk</p>
         </div>
         <div className="manifestoText">
-          <p className="sectionLabel">MANIFESTO / 关于我</p>
+          <p className="sectionLabel">ABOUT / 判断方式</p>
           <h2>
             <span>我把分散的信息</span>
             <span>
@@ -867,7 +856,7 @@ function Contact({ setCursor }) {
     <section className="contactPage" id="contact">
       <div className="shell contactGrid">
         <div>
-          <p className="sectionLabel">OPEN FILE / CONTACT</p>
+          <p className="sectionLabel">CONTACT / 联系方式</p>
           <h2>如果你想了解我的项目、实习经历或研究兴趣，欢迎与我联系。</h2>
         </div>
         <div className="contactDossier">
@@ -893,7 +882,7 @@ function Contact({ setCursor }) {
               href="./resume-2026.pdf"
               target="_blank"
               rel="noreferrer"
-              onMouseEnter={(event) => setCursor({ show: true, text: "AVAILABLE", x: event.clientX, y: event.clientY })}
+              onMouseEnter={(event) => setCursor({ show: true, text: "OPEN SIGNAL", x: event.clientX, y: event.clientY })}
               onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
               onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
             >
