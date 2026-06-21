@@ -5,17 +5,16 @@
   --pitch: #12120f;
   --graphite: #736e66;
   --line-tone: #c8bfb3;
-  --mineral: #008fa3;
-  --data-blue: #006d77;
+  --mineral: #4f7480;
+  --data-blue: #2f6570;
   --olive: #d7e35f;
   --gold: #d7e35f;
   --moss-ink: #4f5a32;
-  --rose: #e83e8c;
-  --mauve: #8b5fbf;
+  --rose: #d84f8e;
+  --mauve: #8172a8;
   --lichen: #4f9360;
   --clay: #c28a38;
   --line: rgba(18, 18, 15, 0.16);
-  --active-signal: var(--gold);
   --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
   --sans: Inter, Manrope, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   color: var(--ink);
@@ -465,7 +464,7 @@ dd {
   right: -22px;
   width: 150px;
   height: 82px;
-  content: "DESK SNAPSHOT";
+  content: "SIGNAL SNAPSHOT";
   transform: rotate(5deg);
   border: 1px solid rgba(166, 184, 90, 0.28);
   padding: 16px;
@@ -515,7 +514,7 @@ dd {
 .mapCanvas polyline,
 .mapCanvas path {
   fill: none;
-  stroke: var(--active-signal);
+  stroke: rgba(215, 227, 95, 0.82);
   stroke-width: 0.52;
   stroke-linecap: round;
   stroke-dasharray: 220;
@@ -543,37 +542,6 @@ dd {
   stroke-width: 0.44;
 }
 
-.mapCanvas .echoPath {
-  display: none;
-  stroke: var(--clay);
-  stroke-width: 0.38;
-  opacity: 0.72;
-}
-
-.signalMapBoard.active-rose {
-  --active-signal: var(--rose);
-}
-
-.signalMapBoard.active-blue {
-  --active-signal: var(--mineral);
-}
-
-.signalMapBoard.active-mauve {
-  --active-signal: var(--mauve);
-}
-
-.signalMapBoard.active-lichen {
-  --active-signal: var(--lichen);
-}
-
-.signalMapBoard.active-clay {
-  --active-signal: var(--clay);
-}
-
-.signalMapBoard.active-moss {
-  --active-signal: var(--gold);
-}
-
 .mapNode {
   position: absolute;
   display: grid;
@@ -588,15 +556,6 @@ dd {
   cursor: pointer;
   opacity: 0;
   animation: nodeIgnite 600ms ease forwards;
-}
-
-.mapNode small {
-  position: absolute;
-  top: -3px;
-  left: 20px;
-  color: rgba(242, 238, 231, 0.52);
-  font-family: Georgia, serif;
-  font-size: 10px;
 }
 
 .mapNode i {
@@ -665,10 +624,6 @@ dd {
   transform: scale(1.35);
   background: currentColor;
   box-shadow: 0 0 0 8px color-mix(in srgb, currentColor 18%, transparent);
-}
-
-.mapNode.active span {
-  color: var(--pearl);
 }
 
 .mapAnnotation {
@@ -822,106 +777,7 @@ dd {
 }
 
 .section {
-  position: relative;
   padding: 132px 0;
-}
-
-.miniSignalEcho {
-  display: grid;
-  grid-template-columns: 170px 1fr;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 28px;
-  border-top: 1px solid var(--line);
-  padding-top: 18px;
-  color: var(--graphite);
-}
-
-.miniSignalEcho p {
-  margin: 0;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.miniSignalEcho div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.miniSignalEcho button {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  border: 0;
-  padding: 0;
-  color: rgba(11, 11, 10, 0.34);
-  background: transparent;
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: color 180ms ease, transform 180ms ease;
-}
-
-.miniSignalEcho button i {
-  width: 9px;
-  height: 9px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  background: transparent;
-  transition: background 180ms ease, box-shadow 180ms ease;
-}
-
-.miniSignalEcho button.active,
-.miniSignalEcho button:hover {
-  color: var(--ink);
-  transform: translateY(-1px);
-}
-
-.miniSignalEcho button.active i,
-.miniSignalEcho button:hover i {
-  background: currentColor;
-  box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent);
-}
-
-.miniSignalEcho button.rose.active,
-.miniSignalEcho button.rose:hover {
-  color: var(--rose);
-}
-
-.miniSignalEcho button.blue.active,
-.miniSignalEcho button.blue:hover {
-  color: var(--mineral);
-}
-
-.miniSignalEcho button.mauve.active,
-.miniSignalEcho button.mauve:hover {
-  color: var(--mauve);
-}
-
-.miniSignalEcho button.lichen.active,
-.miniSignalEcho button.lichen:hover {
-  color: var(--lichen);
-}
-
-.miniSignalEcho button.clay.active,
-.miniSignalEcho button.clay:hover {
-  color: var(--clay);
-}
-
-.miniSignalEcho button.moss.active,
-.miniSignalEcho button.moss:hover {
-  color: var(--moss-ink);
-}
-
-.miniSignalEcho em {
-  width: 34px;
-  height: 1px;
-  background: rgba(11, 11, 10, 0.18);
 }
 
 .sectionHeading {
@@ -964,45 +820,6 @@ dd {
   transition: background 240ms ease, padding 240ms ease;
 }
 
-.playableNote {
-  overflow: visible;
-}
-
-.playableNote::before {
-  right: 58px;
-  width: 78px;
-  transform: translateY(10px) rotate(-5deg);
-}
-
-.playableNote::selection {
-  background: rgba(215, 227, 95, 0.26);
-}
-
-.playableNote .noteMain::after {
-  position: absolute;
-  top: 18px;
-  right: -10px;
-  width: 34px;
-  height: 34px;
-  content: "";
-  transform: rotate(45deg) scale(0.7);
-  transform-origin: top right;
-  border-left: 1px solid rgba(11, 11, 10, 0.16);
-  background: linear-gradient(135deg, rgba(242, 239, 231, 0.85), rgba(222, 214, 203, 0.2));
-  opacity: 0;
-  transition: opacity 180ms ease, transform 220ms ease;
-}
-
-.playableNote:hover .noteMain::after,
-.playableNote.open .noteMain::after {
-  opacity: 1;
-  transform: rotate(45deg) scale(1);
-}
-
-.fieldNote[data-signal-id] {
-  scroll-margin-top: 120px;
-}
-
 .fieldNote > * {
   position: relative;
   z-index: 1;
@@ -1037,34 +854,6 @@ dd {
   padding: 18px;
 }
 
-.fieldNote.blue::before {
-  width: 170px;
-  background:
-    linear-gradient(135deg, rgba(0, 143, 163, 0.12), rgba(0, 143, 163, 0.035)),
-    rgba(242, 239, 231, 0.2);
-  content: "FINANCIAL SIGNAL NOTE / FUND TRACKING / SWOT";
-  color: rgba(0, 143, 163, 0.42);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  line-height: 1.7;
-  padding: 18px;
-}
-
-.fieldNote.mauve::before {
-  width: 184px;
-  background:
-    linear-gradient(135deg, rgba(122, 92, 142, 0.15), rgba(122, 92, 142, 0.035)),
-    rgba(242, 239, 231, 0.2);
-  content: "TALENT MAP / CANDIDATE NOTE / REPORT";
-  color: rgba(122, 92, 142, 0.42);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  line-height: 1.7;
-  padding: 18px;
-}
-
 .fieldNote::after {
   position: absolute;
   bottom: -1px;
@@ -1078,37 +867,10 @@ dd {
   transition: transform 360ms ease;
 }
 
-.fieldNote.rose::after {
-  background: var(--rose);
-}
-
-.fieldNote.blue::after {
-  background: var(--mineral);
-}
-
-.fieldNote.mauve::after {
-  background: var(--mauve);
-}
-
 .fieldNote:hover,
 .fieldNote.open {
   background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(199, 211, 111, 0.1));
   padding-left: 24px;
-}
-
-.fieldNote.rose:hover,
-.fieldNote.rose.open {
-  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(216, 79, 142, 0.1));
-}
-
-.fieldNote.blue:hover,
-.fieldNote.blue.open {
-  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(0, 143, 163, 0.08));
-}
-
-.fieldNote.mauve:hover,
-.fieldNote.mauve.open {
-  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(129, 114, 168, 0.12));
 }
 
 .fieldNote:hover::before,
@@ -1163,15 +925,6 @@ dd {
   text-transform: uppercase;
 }
 
-.sourceNode {
-  margin-bottom: 10px;
-  color: var(--graphite);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
 .fieldNote.rose .noteTheme {
   color: var(--rose);
 }
@@ -1199,297 +952,6 @@ dd {
 .noteRole span {
   margin-left: 18px;
   color: rgba(122, 116, 108, 0.72);
-}
-
-.noteDefaultLine {
-  margin: 22px 0 0;
-  color: var(--ink);
-  font-size: 15px;
-  letter-spacing: 0.02em;
-}
-
-.playLayer {
-  max-height: 0;
-  margin-top: 0;
-  opacity: 0;
-  overflow: hidden;
-  transform: translateY(10px);
-  transition: max-height 420ms ease, margin 260ms ease, opacity 240ms ease, transform 260ms ease;
-}
-
-.fieldNote.open .playLayer,
-.fieldNote:hover .playLayer {
-  max-height: 520px;
-  margin-top: 30px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.beautyPack {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  overflow: visible;
-}
-
-.beautyMiniCard {
-  min-height: 118px;
-  border-top: 2px solid var(--rose);
-  padding: 16px 14px;
-  background: rgba(242, 239, 231, 0.72);
-  box-shadow: 0 18px 38px rgba(11, 11, 10, 0.08);
-  transition: transform 220ms ease, box-shadow 220ms ease;
-}
-
-.beautyPack .noteSignalGrid,
-.talentBoard .noteSignalGrid {
-  grid-column: 1 / -1;
-  margin-bottom: 8px;
-}
-
-.beautyMiniCard:nth-child(1) {
-  transform: translateY(10px) rotate(-2deg);
-}
-
-.beautyMiniCard:nth-child(2) {
-  transform: translateY(-4px) rotate(1.2deg);
-}
-
-.beautyMiniCard:nth-child(3) {
-  transform: translateY(14px) rotate(2deg);
-}
-
-.fieldNote.open .beautyMiniCard,
-.fieldNote:hover .beautyMiniCard {
-  box-shadow: 0 24px 48px rgba(216, 79, 142, 0.12);
-}
-
-.beautyMiniCard small,
-.metricReadout small,
-.candidateNote small {
-  color: currentColor;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.beautyMiniCard p,
-.metricReadout p,
-.candidateNote p {
-  margin: 10px 0 0;
-  color: var(--graphite);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.dataSlice {
-  color: var(--mineral);
-}
-
-.financialSignalNote {
-  max-width: 780px;
-}
-
-.financialNotePaper {
-  position: relative;
-  border-top: 2px solid currentColor;
-  padding: 16px 18px 18px;
-  background:
-    linear-gradient(90deg, rgba(0, 143, 163, 0.045) 1px, transparent 1px),
-    linear-gradient(rgba(0, 143, 163, 0.04) 1px, transparent 1px),
-    rgba(242, 239, 231, 0.72);
-  background-size: 18px 18px;
-  box-shadow: 0 18px 42px rgba(11, 11, 10, 0.07);
-}
-
-.financialNotePaper::after {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  content: "SCAN";
-  border: 1px solid rgba(0, 143, 163, 0.42);
-  padding: 5px 7px;
-  color: var(--mineral);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  transform: rotate(4deg);
-}
-
-.financialNoteHead {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 10px;
-  color: currentColor;
-}
-
-.financialNoteHead small {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-
-.financialNoteHead span {
-  color: var(--graphite);
-  font-size: 11px;
-}
-
-.dataSlice svg {
-  width: min(100%, 300px);
-  height: 56px;
-  margin: 2px 0 12px;
-}
-
-.dataSlice polyline {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-  stroke-dasharray: 320;
-  animation: mapDraw 1400ms ease both;
-  opacity: 0.78;
-}
-
-.noteSignalGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.noteSignalGrid div {
-  border-top: 1px solid color-mix(in srgb, currentColor 58%, transparent);
-  padding-top: 12px;
-}
-
-.noteSignalGrid span {
-  display: block;
-  margin-bottom: 8px;
-  color: currentColor;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-
-.noteSignalGrid p {
-  margin: 0;
-  color: var(--graphite);
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.metricChips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.metricChips button {
-  border: 1px solid rgba(79, 116, 128, 0.34);
-  padding: 8px 10px;
-  color: var(--ink);
-  background: rgba(242, 239, 231, 0.52);
-  cursor: pointer;
-  font-size: 12px;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-}
-
-.metricChips button:hover,
-.metricChips button.active {
-  transform: translateY(-2px);
-  border-color: currentColor;
-  background: rgba(47, 107, 255, 0.08);
-}
-
-.metricReadout {
-  margin-top: 16px;
-  border-left: 2px solid currentColor;
-  padding-left: 14px;
-}
-
-.talentBoard {
-  position: relative;
-  min-height: 268px;
-  color: var(--mauve);
-}
-
-.talentBoard svg {
-  position: absolute;
-  inset: 118px 180px auto 0;
-  width: 250px;
-  height: 118px;
-  pointer-events: none;
-}
-
-.talentBoard path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.2;
-  stroke-dasharray: 280;
-  animation: mapDraw 1600ms ease both;
-}
-
-.talentNodeGrid {
-  position: relative;
-  z-index: 1;
-  margin-top: 18px;
-  display: grid;
-  width: min(440px, 100%);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.talentNodeGrid button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(122, 92, 142, 0.32);
-  padding: 10px;
-  color: var(--ink);
-  background: rgba(242, 239, 231, 0.68);
-  cursor: pointer;
-  font-size: 12px;
-  text-align: left;
-  transition: transform 160ms ease, border-color 160ms ease;
-}
-
-.talentNodeGrid button i {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(122, 92, 142, 0.48);
-}
-
-.talentNodeGrid button:hover,
-.talentNodeGrid button.active {
-  transform: translateY(-2px);
-  border-color: currentColor;
-}
-
-.candidateNote {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 168px;
-  min-height: 142px;
-  transform: rotate(2deg);
-  border: 1px solid rgba(11, 11, 10, 0.12);
-  padding: 14px;
-  color: var(--mauve);
-  background: rgba(242, 239, 231, 0.78);
-  box-shadow: 0 18px 42px rgba(11, 11, 10, 0.08);
-}
-
-.candidateNote strong {
-  display: inline-block;
-  margin-top: 10px;
-  border: 1px solid currentColor;
-  padding: 6px 8px;
-  color: currentColor;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  transform: rotate(-7deg);
 }
 
 .closedLabels {
@@ -1570,84 +1032,6 @@ dd {
   border-left: 1px solid var(--line);
 }
 
-.signalSheet {
-  position: relative;
-  display: grid;
-  gap: 8px;
-  max-height: 0;
-  overflow: hidden;
-  border-left: 2px solid currentColor;
-  padding-left: 14px;
-  color: var(--moss-ink);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: max-height 300ms ease, opacity 220ms ease, transform 260ms ease;
-}
-
-.fieldNote.open .signalSheet,
-.fieldNote:hover .signalSheet {
-  max-height: 180px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.signalSheet.rose {
-  color: var(--rose);
-}
-
-.signalSheet.blue {
-  color: var(--mineral);
-}
-
-.signalSheet.mauve {
-  color: var(--mauve);
-}
-
-.signalSheet small {
-  color: currentColor;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-
-.signalSheet span {
-  color: var(--ink);
-  font-size: 12px;
-}
-
-.signalSheet svg {
-  width: 120px;
-  height: 38px;
-}
-
-.signalSheet polyline {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-dasharray: 140;
-  animation: mapDraw 1200ms ease both;
-}
-
-.talentDots {
-  position: relative;
-  width: 120px;
-  height: 38px;
-}
-
-.talentDots i {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: currentColor;
-  box-shadow: 0 0 0 6px color-mix(in srgb, currentColor 12%, transparent);
-}
-
-.talentDots i:nth-child(1) { left: 4px; top: 22px; }
-.talentDots i:nth-child(2) { left: 36px; top: 8px; }
-.talentDots i:nth-child(3) { left: 74px; top: 18px; }
-.talentDots i:nth-child(4) { left: 106px; top: 5px; }
-
 .tagCloud {
   display: flex;
   flex-wrap: wrap;
@@ -1659,30 +1043,6 @@ dd {
     linear-gradient(rgba(11, 11, 10, 0.025) 1px, transparent 1px),
     var(--paper);
   background-size: 38px 38px;
-}
-
-.supportingEcho button {
-  pointer-events: none;
-}
-
-.supportingCases {
-  gap: 18px;
-}
-
-.supportingCase {
-  border-top-style: dashed;
-}
-
-.supportingCase .drawerTitle p {
-  color: var(--ink);
-  font-size: 14px;
-  letter-spacing: 0.02em;
-}
-
-.supportingCase::before {
-  right: 18px;
-  width: 108px;
-  background: rgba(242, 239, 231, 0.34);
 }
 
 .caseDrawerList {
@@ -1700,7 +1060,6 @@ dd {
   border-top: 1px solid rgba(11, 11, 10, 0.18);
   cursor: pointer;
   transition: background 220ms ease, transform 220ms ease, padding 220ms ease;
-  scroll-margin-top: 120px;
 }
 
 .caseDrawer > * {
@@ -1743,16 +1102,6 @@ dd {
   padding-left: 22px;
 }
 
-.caseDrawer.lichen.open,
-.caseDrawer.lichen:hover {
-  background: linear-gradient(90deg, rgba(242, 238, 231, 0.58), rgba(79, 147, 96, 0.12));
-}
-
-.caseDrawer.clay.open,
-.caseDrawer.clay:hover {
-  background: linear-gradient(90deg, rgba(242, 238, 231, 0.58), rgba(194, 138, 56, 0.13));
-}
-
 .caseDrawer.open::before,
 .caseDrawer:hover::before {
   opacity: 0.24;
@@ -1789,17 +1138,6 @@ dd {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.7;
-}
-
-.drawerLabel em {
-  max-width: 140px;
-  color: var(--graphite);
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  line-height: 1.5;
-  text-transform: uppercase;
 }
 
 .drawerTitle h3 {
@@ -1857,14 +1195,6 @@ dd {
   background: var(--gold);
 }
 
-.caseDrawer.lichen .flowLine span::after {
-  background: var(--lichen);
-}
-
-.caseDrawer.clay .flowLine span::after {
-  background: var(--clay);
-}
-
 .flowLine span:last-child::after {
   display: none;
 }
@@ -1876,46 +1206,6 @@ dd {
   min-height: 560px;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
-  scroll-margin-top: 120px;
-}
-
-.abilityNetwork.mapLinked .matrixCore {
-  color: var(--moss-ink);
-  box-shadow: 0 0 0 8px rgba(215, 227, 95, 0.08);
-}
-
-.abilityNetwork.hasActive .abilityCell {
-  opacity: 0.48;
-}
-
-.abilityNetwork.hasActive .abilityCell.active {
-  opacity: 1;
-}
-
-.abilityNetwork.hasActive .abilityCell:not(.active) strong {
-  opacity: 0.54;
-}
-
-.abilityNetwork.hasActive .abilityCell.active strong {
-  border-color: rgba(215, 227, 95, 0.65);
-  color: var(--ink);
-}
-
-.abilityNetwork.hasActive .abilityCell.active strong i {
-  background: var(--gold);
-  transform: scale(1.25);
-}
-
-.abilityNetwork.hasActive .abilityCell.blue.active strong {
-  border-color: rgba(47, 107, 255, 0.46);
-}
-
-.abilityNetwork.hasActive .abilityCell.blue.active strong i {
-  background: #2f6bff;
-}
-
-.abilityNetwork.mapLinked > svg path {
-  stroke: rgba(215, 227, 95, 0.54);
 }
 
 .matrixCore {
@@ -1937,7 +1227,6 @@ dd {
   line-height: 1;
   text-align: center;
   pointer-events: none;
-  transition: color 180ms ease, box-shadow 180ms ease;
 }
 
 .matrixCore::after {
@@ -1963,7 +1252,6 @@ dd {
   stroke-width: 0.18;
   stroke-dasharray: 150;
   animation: mapDraw 2600ms ease-in-out infinite alternate;
-  transition: stroke 180ms ease;
 }
 
 .abilityCell {
