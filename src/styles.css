@@ -15,6 +15,7 @@
   --lichen: #4f9360;
   --clay: #c28a38;
   --line: rgba(18, 18, 15, 0.16);
+  --active-signal: var(--gold);
   --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
   --sans: Inter, Manrope, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   color: var(--ink);
@@ -514,7 +515,7 @@ dd {
 .mapCanvas polyline,
 .mapCanvas path {
   fill: none;
-  stroke: rgba(215, 227, 95, 0.82);
+  stroke: var(--active-signal);
   stroke-width: 0.52;
   stroke-linecap: round;
   stroke-dasharray: 220;
@@ -542,6 +543,36 @@ dd {
   stroke-width: 0.44;
 }
 
+.mapCanvas .echoPath {
+  stroke: var(--clay);
+  stroke-width: 0.38;
+  opacity: 0.72;
+}
+
+.signalMapBoard.active-rose {
+  --active-signal: var(--rose);
+}
+
+.signalMapBoard.active-blue {
+  --active-signal: var(--mineral);
+}
+
+.signalMapBoard.active-mauve {
+  --active-signal: var(--mauve);
+}
+
+.signalMapBoard.active-lichen {
+  --active-signal: var(--lichen);
+}
+
+.signalMapBoard.active-clay {
+  --active-signal: var(--clay);
+}
+
+.signalMapBoard.active-moss {
+  --active-signal: var(--gold);
+}
+
 .mapNode {
   position: absolute;
   display: grid;
@@ -556,6 +587,15 @@ dd {
   cursor: pointer;
   opacity: 0;
   animation: nodeIgnite 600ms ease forwards;
+}
+
+.mapNode small {
+  position: absolute;
+  top: -3px;
+  left: 20px;
+  color: rgba(242, 238, 231, 0.52);
+  font-family: Georgia, serif;
+  font-size: 10px;
 }
 
 .mapNode i {
@@ -624,6 +664,10 @@ dd {
   transform: scale(1.35);
   background: currentColor;
   box-shadow: 0 0 0 8px color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.mapNode.active span {
+  color: var(--pearl);
 }
 
 .mapAnnotation {
@@ -777,7 +821,106 @@ dd {
 }
 
 .section {
+  position: relative;
   padding: 132px 0;
+}
+
+.miniSignalEcho {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 28px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  color: var(--graphite);
+}
+
+.miniSignalEcho p {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.miniSignalEcho div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.miniSignalEcho button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  padding: 0;
+  color: rgba(11, 11, 10, 0.34);
+  background: transparent;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.miniSignalEcho button i {
+  width: 9px;
+  height: 9px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 180ms ease, box-shadow 180ms ease;
+}
+
+.miniSignalEcho button.active,
+.miniSignalEcho button:hover {
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.miniSignalEcho button.active i,
+.miniSignalEcho button:hover i {
+  background: currentColor;
+  box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.miniSignalEcho button.rose.active,
+.miniSignalEcho button.rose:hover {
+  color: var(--rose);
+}
+
+.miniSignalEcho button.blue.active,
+.miniSignalEcho button.blue:hover {
+  color: var(--mineral);
+}
+
+.miniSignalEcho button.mauve.active,
+.miniSignalEcho button.mauve:hover {
+  color: var(--mauve);
+}
+
+.miniSignalEcho button.lichen.active,
+.miniSignalEcho button.lichen:hover {
+  color: var(--lichen);
+}
+
+.miniSignalEcho button.clay.active,
+.miniSignalEcho button.clay:hover {
+  color: var(--clay);
+}
+
+.miniSignalEcho button.moss.active,
+.miniSignalEcho button.moss:hover {
+  color: var(--moss-ink);
+}
+
+.miniSignalEcho em {
+  width: 34px;
+  height: 1px;
+  background: rgba(11, 11, 10, 0.18);
 }
 
 .sectionHeading {
@@ -818,6 +961,10 @@ dd {
   border-top: 1px solid var(--line);
   cursor: pointer;
   transition: background 240ms ease, padding 240ms ease;
+}
+
+.fieldNote[data-signal-id] {
+  scroll-margin-top: 120px;
 }
 
 .fieldNote > * {
@@ -867,10 +1014,37 @@ dd {
   transition: transform 360ms ease;
 }
 
+.fieldNote.rose::after {
+  background: var(--rose);
+}
+
+.fieldNote.blue::after {
+  background: var(--mineral);
+}
+
+.fieldNote.mauve::after {
+  background: var(--mauve);
+}
+
 .fieldNote:hover,
 .fieldNote.open {
   background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(199, 211, 111, 0.1));
   padding-left: 24px;
+}
+
+.fieldNote.rose:hover,
+.fieldNote.rose.open {
+  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(216, 79, 142, 0.1));
+}
+
+.fieldNote.blue:hover,
+.fieldNote.blue.open {
+  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(79, 116, 128, 0.12));
+}
+
+.fieldNote.mauve:hover,
+.fieldNote.mauve.open {
+  background: linear-gradient(90deg, rgba(222, 214, 203, 0.82), rgba(129, 114, 168, 0.12));
 }
 
 .fieldNote:hover::before,
@@ -922,6 +1096,15 @@ dd {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sourceNode {
+  margin-bottom: 10px;
+  color: var(--graphite);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -1032,6 +1215,84 @@ dd {
   border-left: 1px solid var(--line);
 }
 
+.signalSheet {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  max-height: 0;
+  overflow: hidden;
+  border-left: 2px solid currentColor;
+  padding-left: 14px;
+  color: var(--moss-ink);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: max-height 300ms ease, opacity 220ms ease, transform 260ms ease;
+}
+
+.fieldNote.open .signalSheet,
+.fieldNote:hover .signalSheet {
+  max-height: 180px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.signalSheet.rose {
+  color: var(--rose);
+}
+
+.signalSheet.blue {
+  color: var(--mineral);
+}
+
+.signalSheet.mauve {
+  color: var(--mauve);
+}
+
+.signalSheet small {
+  color: currentColor;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.signalSheet span {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.signalSheet svg {
+  width: 120px;
+  height: 38px;
+}
+
+.signalSheet polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-dasharray: 140;
+  animation: mapDraw 1200ms ease both;
+}
+
+.talentDots {
+  position: relative;
+  width: 120px;
+  height: 38px;
+}
+
+.talentDots i {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 6px color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.talentDots i:nth-child(1) { left: 4px; top: 22px; }
+.talentDots i:nth-child(2) { left: 36px; top: 8px; }
+.talentDots i:nth-child(3) { left: 74px; top: 18px; }
+.talentDots i:nth-child(4) { left: 106px; top: 5px; }
+
 .tagCloud {
   display: flex;
   flex-wrap: wrap;
@@ -1060,6 +1321,7 @@ dd {
   border-top: 1px solid rgba(11, 11, 10, 0.18);
   cursor: pointer;
   transition: background 220ms ease, transform 220ms ease, padding 220ms ease;
+  scroll-margin-top: 120px;
 }
 
 .caseDrawer > * {
@@ -1102,6 +1364,16 @@ dd {
   padding-left: 22px;
 }
 
+.caseDrawer.lichen.open,
+.caseDrawer.lichen:hover {
+  background: linear-gradient(90deg, rgba(242, 238, 231, 0.58), rgba(79, 147, 96, 0.12));
+}
+
+.caseDrawer.clay.open,
+.caseDrawer.clay:hover {
+  background: linear-gradient(90deg, rgba(242, 238, 231, 0.58), rgba(194, 138, 56, 0.13));
+}
+
 .caseDrawer.open::before,
 .caseDrawer:hover::before {
   opacity: 0.24;
@@ -1138,6 +1410,17 @@ dd {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.7;
+}
+
+.drawerLabel em {
+  max-width: 140px;
+  color: var(--graphite);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .drawerTitle h3 {
@@ -1195,6 +1478,14 @@ dd {
   background: var(--gold);
 }
 
+.caseDrawer.lichen .flowLine span::after {
+  background: var(--lichen);
+}
+
+.caseDrawer.clay .flowLine span::after {
+  background: var(--clay);
+}
+
 .flowLine span:last-child::after {
   display: none;
 }
@@ -1206,6 +1497,16 @@ dd {
   min-height: 560px;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
+  scroll-margin-top: 120px;
+}
+
+.abilityNetwork.mapLinked .matrixCore {
+  color: var(--moss-ink);
+  box-shadow: 0 0 0 8px rgba(215, 227, 95, 0.08);
+}
+
+.abilityNetwork.mapLinked > svg path {
+  stroke: rgba(215, 227, 95, 0.54);
 }
 
 .matrixCore {
@@ -1227,6 +1528,7 @@ dd {
   line-height: 1;
   text-align: center;
   pointer-events: none;
+  transition: color 180ms ease, box-shadow 180ms ease;
 }
 
 .matrixCore::after {
@@ -1252,6 +1554,7 @@ dd {
   stroke-width: 0.18;
   stroke-dasharray: 150;
   animation: mapDraw 2600ms ease-in-out infinite alternate;
+  transition: stroke 180ms ease;
 }
 
 .abilityCell {

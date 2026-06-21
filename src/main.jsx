@@ -30,6 +30,7 @@ const archiveTicker = [
 const signalNodes = [
   {
     id: "beauty",
+    no: "01",
     title: "Beauty Retail",
     org: "Benefit LVMH Beauty",
     meta: "新品趋势 / 销售库存 / 视觉陈列",
@@ -42,6 +43,7 @@ const signalNodes = [
   },
   {
     id: "finance",
+    no: "02",
     title: "Financial Products",
     org: "华创证券",
     meta: "基金指标 / SWOT / 短视频营销",
@@ -54,6 +56,7 @@ const signalNodes = [
   },
   {
     id: "talent",
+    no: "03",
     title: "Brand & Talent",
     org: "Korn Ferry",
     meta: "品牌定位 / 人才需求 / 报告表达",
@@ -66,6 +69,7 @@ const signalNodes = [
   },
   {
     id: "health",
+    no: "04",
     title: "Digital Health",
     org: "国家级大创项目",
     meta: "CBT / 正念训练 / AI 辅助开发",
@@ -77,7 +81,21 @@ const signalNodes = [
     output: "数字健康平台、组件化界面、数据管理系统",
   },
   {
+    id: "tcm",
+    no: "05",
+    title: "TCM Knowledge",
+    org: "中医知识分享平台",
+    meta: "Knowledge Archive / 竞品观察 / 内容结构",
+    x: 54,
+    y: 86,
+    tone: "clay",
+    signal: "中医知识在线化与用户信息获取需求",
+    method: "平台观察、竞品分析、用户需求拆解",
+    output: "平台定位、内容结构与知识档案支持",
+  },
+  {
     id: "tools",
+    no: "06",
     title: "Data Tools",
     org: "Excel, SPSS, PowerBI, MySQL, Python",
     meta: "数据分析 / 可视化 / 结构化判断",
@@ -90,9 +108,31 @@ const signalNodes = [
   },
 ];
 
+const signalIndex = signalNodes.reduce((acc, node) => {
+  acc[node.id] = node;
+  return acc;
+}, {});
+
+const signalEchoGroups = {
+  field: ["beauty", "finance", "talent"],
+  case: ["health", "tcm"],
+  tools: ["tools"],
+};
+
+const signalTargetSelector = {
+  beauty: '[data-signal-target="beauty"]',
+  finance: '[data-signal-target="finance"]',
+  talent: '[data-signal-target="talent"]',
+  health: '[data-signal-target="health"]',
+  tcm: '[data-signal-target="tcm"]',
+  tools: "#tool-system",
+};
+
 const notes = [
   {
     no: "01",
+    signalId: "beauty",
+    nodeLabel: "Beauty Retail",
     theme: "BEAUTY RETAIL SIGNALS",
     company: "Benefit / LVMH Beauty 贝玲妃",
     role: "旅游零售部｜市场实习生",
@@ -101,10 +141,14 @@ const notes = [
     signal: "全球美妆趋势、新品反馈、免税渠道销售库存、竞品价格变化。",
     method: "竞品分析、产品试用反馈、详情页与 Banner 更新、VM 陈列协调。",
     output: "为新品本土化、渠道物料、培训支持和终端视觉呈现提供参考。",
+    overlayTitle: "BEAUTY SIGNAL",
+    sheetItems: ["Product Insight", "Retail Data", "VM Coordination"],
     tags: ["美妆零售", "新品趋势", "销售库存", "视觉陈列", "渠道协同"],
   },
   {
     no: "02",
+    signalId: "finance",
+    nodeLabel: "Financial Products",
     theme: "FINANCIAL MARKET NOTES",
     company: "华创证券",
     role: "市场分析助理",
@@ -113,10 +157,14 @@ const notes = [
     signal: "基金产品表现、头部券商短视频营销、用户互动数据。",
     method: "Excel 分析、SWOT、竞品对比、趋势图表制作。",
     output: "形成市场分析报告、可视化图表和短视频脚本支持。",
+    overlayTitle: "DATA SLICE",
+    sheetItems: ["NAV Growth", "Annualized Return", "Market Share", "SWOT"],
     tags: ["金融产品", "Excel 分析", "SWOT", "竞品研究", "趋势报告"],
   },
   {
     no: "03",
+    signalId: "talent",
+    nodeLabel: "Brand & Talent",
     theme: "BRAND & TALENT RESEARCH",
     company: "Korn Ferry 光辉国际",
     role: "高级人才搜寻助理",
@@ -125,6 +173,8 @@ const notes = [
     signal: "品牌定位、岗位需求、行业人才结构。",
     method: "品牌研究、人才地图、候选人背景梳理。",
     output: "支持推荐报告、调研材料和汇报 PPT 制作。",
+    overlayTitle: "TALENT MAP",
+    sheetItems: ["Brand Positioning", "Talent Demand", "Candidate Profile", "Report Output"],
     tags: ["品牌研究", "人才地图", "行业分析", "候选人评估", "报告表达"],
   },
 ];
@@ -132,6 +182,8 @@ const notes = [
 const cases = [
   {
     no: "01",
+    signalId: "health",
+    nodeLabel: "Digital Health",
     title: "面向年轻群体身材焦虑问题的数字健康平台",
     role: "国家级大学生创新创业训练计划｜项目负责人",
     intro: "融合 CBT 与正念训练，面向情绪支持、健康习惯和可持续自我管理的数字健康平台。",
@@ -143,10 +195,12 @@ const cases = [
   },
   {
     no: "02",
+    signalId: "tcm",
+    nodeLabel: "Knowledge Archive",
     title: "中医知识分享平台",
     role: "国家级大学生创新创业训练计划｜队员",
     intro: "协助打造开放、便捷、科学的中医知识分享平台，支持平台定位和用户需求识别。",
-    method: "市场调研、竞品分析、平台观察、用户需求。",
+    method: "市场调研、竞品分析、平台观察、用户需求识别。",
     output: "竞品分析、用户需求识别、内容结构支持。",
     flow: ["平台观察", "竞品分析", "用户需求", "平台定位", "内容结构"],
     tags: ["中医知识平台", "市场调研", "竞品分析", "用户需求", "内容结构"],
@@ -183,7 +237,10 @@ const tools = [
 
 function App() {
   const { activeSection, progress } = useScrollIndex();
+  const [activeSignal, setActiveSignal] = useState("beauty");
   const [cursor, setCursor] = useState({ show: false, text: "", x: 0, y: 0 });
+
+  useActiveSignalOnScroll(setActiveSignal);
 
   return (
     <>
@@ -191,10 +248,10 @@ function App() {
       <ScrollRail activeSection={activeSection} progress={progress} />
       <CursorLabel cursor={cursor} />
       <main>
-        <Hero setCursor={setCursor} />
-        <FieldNotes setCursor={setCursor} />
-        <CaseFiles setCursor={setCursor} />
-        <ToolSystem setCursor={setCursor} />
+        <Hero activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
+        <FieldNotes activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
+        <CaseFiles activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
+        <ToolSystem activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
         <Manifesto />
         <Contact setCursor={setCursor} />
       </main>
@@ -215,9 +272,7 @@ function useScrollIndex() {
       let current = "home";
       for (const [, , id] of sections) {
         const element = document.getElementById(id);
-        if (element && element.getBoundingClientRect().top <= window.innerHeight * 0.36) {
-          current = id;
-        }
+        if (element && element.getBoundingClientRect().top <= window.innerHeight * 0.36) current = id;
       }
       setActiveSection(current);
     };
@@ -234,6 +289,37 @@ function useScrollIndex() {
   return { activeSection, progress };
 }
 
+function useActiveSignalOnScroll(setActiveSignal) {
+  useEffect(() => {
+    const update = () => {
+      const targets = [...document.querySelectorAll("[data-signal-target]")];
+      let current = "";
+      for (const target of targets) {
+        const rect = target.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.46 && rect.bottom >= window.innerHeight * 0.2) {
+          current = target.dataset.signalTarget;
+          break;
+        }
+      }
+      if (current) setActiveSignal(current);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [setActiveSignal]);
+}
+
+function jumpToSignal(id) {
+  const selector = signalTargetSelector[id];
+  const target = selector ? document.querySelector(selector) : null;
+  target?.scrollIntoView({ behavior: "smooth", block: "center" });
+  window.dispatchEvent(new CustomEvent("open-signal", { detail: { id } }));
+}
+
 function Header({ activeSection, progress }) {
   return (
     <header className="siteHeader">
@@ -247,7 +333,7 @@ function Header({ activeSection, progress }) {
           </a>
         ))}
       </nav>
-      <a className="resumeButton magneticButton" href="/resume-2026.pdf" target="_blank" rel="noreferrer">
+      <a className="resumeButton magneticButton" href="./resume-2026.pdf" target="_blank" rel="noreferrer">
         查看简历
       </a>
       <i className="navProgress" style={{ transform: `scaleX(${progress})` }} />
@@ -282,7 +368,7 @@ function CursorLabel({ cursor }) {
   );
 }
 
-function Hero({ setCursor }) {
+function Hero({ activeSignal, setActiveSignal, setCursor }) {
   return (
     <section className="heroIndex" id="home">
       <div className="paperTexture" aria-hidden="true" />
@@ -313,26 +399,24 @@ function Hero({ setCursor }) {
             ))}
           </div>
         </div>
-        <SignalMap setCursor={setCursor} />
+        <SignalMap activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
       </div>
       <ArchiveTicker />
     </section>
   );
 }
 
-function SignalMap({ setCursor }) {
-  const [active, setActive] = useState(signalNodes[0]);
+function SignalMap({ activeSignal, setActiveSignal, setCursor }) {
+  const active = signalIndex[activeSignal] || signalNodes[0];
   const [parallax, setParallax] = useState({ x: 0, y: 0 });
 
-  const linePoints = useMemo(
-    () => signalNodes.map((node) => `${node.x},${node.y}`).join(" "),
-    [],
-  );
+  const linePoints = useMemo(() => signalNodes.map((node) => `${node.x},${node.y}`).join(" "), []);
 
   return (
     <div
-      className="signalMapBoard"
+      className={`signalMapBoard active-${active.tone}`}
       aria-label="交互市场信号图"
+      data-active-signal={active.id}
       onMouseMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         setParallax({
@@ -356,25 +440,32 @@ function SignalMap({ setCursor }) {
           <polyline points={linePoints} />
           <path d="M16 28 C34 12 54 18 67 23 S82 51 82 76" />
           <path className="goldPath" d="M24 78 C38 62 48 55 67 23" />
+          <path className="echoPath" d="M54 86 C64 78 73 76 82 76" />
         </svg>
         {signalNodes.map((node, index) => (
           <button
             className={`mapNode ${node.tone} ${active.id === node.id ? "active" : ""}`}
+            data-signal-id={node.id}
             key={node.id}
-            onFocus={() => setActive(node)}
+            onClick={() => {
+              setActiveSignal(node.id);
+              jumpToSignal(node.id);
+            }}
+            onFocus={() => setActiveSignal(node.id)}
             onMouseEnter={(event) => {
-              setActive(node);
-              setCursor({ show: true, text: "OPEN SIGNAL", x: event.clientX, y: event.clientY });
+              setActiveSignal(node.id);
+              setCursor({ show: true, text: `OPEN ${node.title.toUpperCase()}`, x: event.clientX, y: event.clientY });
             }}
             style={{ left: `${node.x}%`, top: `${node.y}%`, animationDelay: `${index * 140 + 320}ms` }}
           >
             <i />
+            <small>{node.no}</small>
             <span>{node.title}</span>
           </button>
         ))}
       </div>
       <div className={`mapAnnotation ${active.tone}`}>
-        <p>{active.title}</p>
+        <p>SOURCE NODE / {active.no}</p>
         <h3>{active.org}</h3>
         <strong>{active.meta}</strong>
         <dl>
@@ -424,11 +515,21 @@ function ArchiveTicker() {
   );
 }
 
-function FieldNotes({ setCursor }) {
+function FieldNotes({ activeSignal, setActiveSignal, setCursor }) {
   const [openNote, setOpenNote] = useState("01");
+
+  useEffect(() => {
+    const open = (event) => {
+      const note = notes.find((item) => item.signalId === event.detail.id);
+      if (note) setOpenNote(note.no);
+    };
+    window.addEventListener("open-signal", open);
+    return () => window.removeEventListener("open-signal", open);
+  }, []);
 
   return (
     <section className="section fieldNotes shell" id="field-notes">
+      <MiniSignalEcho title="SIGNAL MAP / 01-03" ids={signalEchoGroups.field} activeSignal={activeSignal} />
       <SectionHeading
         index="01"
         label="FIELD NOTES"
@@ -441,17 +542,24 @@ function FieldNotes({ setCursor }) {
           return (
             <article
               className={`fieldNote ${note.tone} ${isOpen ? "open" : ""}`}
+              data-signal-id={note.signalId}
+              data-signal-target={note.signalId}
               key={note.theme}
               onMouseEnter={(event) => {
                 setOpenNote(note.no);
-                setCursor({ show: true, text: "EXPAND SIGNAL", x: event.clientX, y: event.clientY });
+                setActiveSignal(note.signalId);
+                setCursor({ show: true, text: note.signalId === "beauty" ? "OPEN BEAUTY SIGNAL" : note.signalId === "finance" ? "TRACE FINANCE SIGNAL" : "VIEW TALENT MAP", x: event.clientX, y: event.clientY });
               }}
               onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
               onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
-              onClick={() => setOpenNote(isOpen ? "" : note.no)}
+              onClick={() => {
+                setOpenNote(isOpen ? "" : note.no);
+                setActiveSignal(note.signalId);
+              }}
             >
               <div className="noteIndex">{note.no}</div>
               <div className="noteMain">
+                <p className="sourceNode">SOURCE NODE / {note.nodeLabel}</p>
                 <p className="noteTheme">{note.theme}</p>
                 <h3>{note.company}</h3>
                 <p className="noteRole">
@@ -478,6 +586,7 @@ function FieldNotes({ setCursor }) {
                 </div>
               </div>
               <aside className="noteSide">
+                <SignalSheet note={note} />
                 <div className="tagCloud">
                   {note.tags.map((tag) => (
                     <span key={tag}>{tag}</span>
@@ -492,12 +601,39 @@ function FieldNotes({ setCursor }) {
   );
 }
 
-function CaseFiles({ setCursor }) {
+function SignalSheet({ note }) {
+  return (
+    <div className={`signalSheet ${note.tone}`}>
+      <small>{note.overlayTitle}</small>
+      {note.signalId === "finance" && (
+        <svg viewBox="0 0 120 38" aria-hidden="true">
+          <polyline points="2,29 22,22 43,24 64,11 88,16 118,5" />
+        </svg>
+      )}
+      {note.signalId === "talent" && <div className="talentDots"><i /><i /><i /><i /></div>}
+      {note.sheetItems.map((item) => (
+        <span key={item}>{item}</span>
+      ))}
+    </div>
+  );
+}
+
+function CaseFiles({ activeSignal, setActiveSignal, setCursor }) {
   const [openCase, setOpenCase] = useState("01");
+
+  useEffect(() => {
+    const open = (event) => {
+      const item = cases.find((caseItem) => caseItem.signalId === event.detail.id);
+      if (item) setOpenCase(item.no);
+    };
+    window.addEventListener("open-signal", open);
+    return () => window.removeEventListener("open-signal", open);
+  }, []);
 
   return (
     <section className="section caseFiles" id="case-files">
       <div className="shell">
+        <MiniSignalEcho title="SIGNAL MAP / 04-05" ids={signalEchoGroups.case} activeSignal={activeSignal} />
         <SectionHeading
           index="02"
           label="CASE FILES"
@@ -510,18 +646,25 @@ function CaseFiles({ setCursor }) {
             return (
               <article
                 className={`caseDrawer ${item.tone} ${isOpen ? "open" : ""}`}
+                data-signal-id={item.signalId}
+                data-signal-target={item.signalId}
                 key={item.title}
                 onMouseEnter={(event) => {
                   setOpenCase(item.no);
-                  setCursor({ show: true, text: "OPEN CASE", x: event.clientX, y: event.clientY });
+                  setActiveSignal(item.signalId);
+                  setCursor({ show: true, text: item.signalId === "health" ? "EXPAND HEALTH CASE" : "EXPAND KNOWLEDGE CASE", x: event.clientX, y: event.clientY });
                 }}
                 onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
                 onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
-                onClick={() => setOpenCase(isOpen ? "" : item.no)}
+                onClick={() => {
+                  setOpenCase(isOpen ? "" : item.no);
+                  setActiveSignal(item.signalId);
+                }}
               >
                 <div className="drawerLabel">
                   <span>CASE FILE {item.no}</span>
                   <strong>{item.role}</strong>
+                  <em>SOURCE NODE / {item.nodeLabel}</em>
                 </div>
                 <div className="drawerTitle">
                   <h3>{item.title}</h3>
@@ -559,19 +702,34 @@ function CaseFiles({ setCursor }) {
   );
 }
 
-function ToolSystem({ setCursor }) {
+function ToolSystem({ activeSignal, setActiveSignal, setCursor }) {
   const [activeTool, setActiveTool] = useState("Research");
 
+  useEffect(() => {
+    const open = (event) => {
+      if (event.detail.id === "tools") setActiveTool("Analysis");
+    };
+    window.addEventListener("open-signal", open);
+    return () => window.removeEventListener("open-signal", open);
+  }, []);
+
   return (
-    <section className="section toolSystem shell" id="tool-system">
+    <section
+      className="section toolSystem shell"
+      id="tool-system"
+      data-signal-id="tools"
+      data-signal-target="tools"
+      onMouseEnter={() => setActiveSignal("tools")}
+    >
+      <MiniSignalEcho title="SIGNAL MAP / 06" ids={signalEchoGroups.tools} activeSignal={activeSignal} />
       <SectionHeading
         index="03"
         label="TOOL MATRIX"
         title="工具矩阵"
         text="研究、分析、表达与搭建共同构成我的工作系统。"
       />
-      <div className="abilityNetwork">
-        <div className="matrixCore">TOOL MATRIX</div>
+      <div className={`abilityNetwork ${activeSignal === "tools" ? "mapLinked" : ""}`}>
+        <div className="matrixCore">DATA TOOLS<br />NODE 06</div>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path d="M18 24 C36 18 56 20 78 28" />
           <path d="M22 78 C38 58 62 48 80 24" />
@@ -583,7 +741,8 @@ function ToolSystem({ setCursor }) {
             key={group.title}
             onMouseEnter={(event) => {
               setActiveTool(group.title);
-              setCursor({ show: true, text: "TRACE TOOLS", x: event.clientX, y: event.clientY });
+              setActiveSignal("tools");
+              setCursor({ show: true, text: "TRACE TOOL SYSTEM", x: event.clientX, y: event.clientY });
             }}
             onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
             onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
@@ -603,6 +762,33 @@ function ToolSystem({ setCursor }) {
         ))}
       </div>
     </section>
+  );
+}
+
+function MiniSignalEcho({ title, ids, activeSignal }) {
+  return (
+    <aside className="miniSignalEcho" aria-label={title}>
+      <p>{title}</p>
+      <div>
+        {ids.map((id, index) => {
+          const node = signalIndex[id];
+          return (
+            <React.Fragment key={id}>
+              <button
+                className={`${node.tone} ${activeSignal === id ? "active" : ""}`}
+                data-signal-id={id}
+                onClick={() => jumpToSignal(id)}
+                aria-label={node.title}
+              >
+                <i />
+                <span>{node.title}</span>
+              </button>
+              {index < ids.length - 1 && <em />}
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </aside>
   );
 }
 
@@ -659,12 +845,12 @@ function Contact({ setCursor }) {
           </div>
           <div>
             <span>Resume</span>
-            <a href="/resume-2026.pdf" download>Download</a>
+            <a href="./resume-2026.pdf" download>Download</a>
           </div>
           <div className="contactActions">
             <a
               className="stampButton"
-              href="/resume-2026.pdf"
+              href="./resume-2026.pdf"
               target="_blank"
               rel="noreferrer"
               onMouseEnter={(event) => setCursor({ show: true, text: "AVAILABLE", x: event.clientX, y: event.clientY })}
