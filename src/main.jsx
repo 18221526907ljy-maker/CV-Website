@@ -33,78 +33,52 @@ const signalNodes = [
     no: "01",
     title: "Beauty Retail",
     org: "Benefit LVMH Beauty",
-    meta: "新品趋势 / 销售库存 / 视觉陈列",
+    meta: "Product Insight / Retail Data / VM Coordination",
     x: 16,
-    y: 28,
+    y: 30,
     tone: "rose",
-    signal: "全球美妆趋势、新品反馈、免税渠道销售库存、竞品价格",
-    method: "竞品分析、产品试用反馈、详情页与 Banner 更新、VM 陈列协调",
-    output: "新品本土化参考、渠道物料跟进、培训支持",
+    signal: "新品趋势、竞品卖点、产品试用反馈与渠道销售库存。",
+    method: "竞品分析、试用反馈整理、详情页与 Banner 更新、VM 陈列协调。",
+    output: "新品本土化参考、渠道物料跟进与培训支持。",
   },
   {
     id: "finance",
     no: "02",
-    title: "Financial Products",
+    title: "Financial Market",
     org: "华创证券",
-    meta: "基金指标 / SWOT / 短视频营销",
-    x: 67,
-    y: 23,
+    meta: "Fund Indicators / SWOT / Short-video Marketing",
+    x: 68,
+    y: 24,
     tone: "blue",
-    signal: "基金产品表现、头部券商短视频营销、用户互动数据",
-    method: "Excel 分析、SWOT、竞品对比、趋势图表",
-    output: "市场分析报告、可视化图表、短视频脚本支持",
+    signal: "基金产品表现、头部券商短视频营销与用户互动数据。",
+    method: "Excel 指标分析、SWOT、竞品对比、趋势图表制作。",
+    output: "市场分析报告、可视化图表和短视频脚本支持。",
   },
   {
     id: "talent",
     no: "03",
     title: "Brand & Talent",
     org: "Korn Ferry",
-    meta: "品牌定位 / 人才需求 / 报告表达",
-    x: 48,
-    y: 55,
+    meta: "Brand Positioning / Talent Demand / Candidate Report",
+    x: 42,
+    y: 58,
     tone: "mauve",
-    signal: "品牌定位、岗位需求、行业人才结构",
-    method: "品牌研究、人才地图、候选人背景梳理",
-    output: "推荐报告、调研材料、汇报 PPT",
-  },
-  {
-    id: "health",
-    no: "04",
-    title: "Digital Health",
-    org: "国家级大创项目",
-    meta: "CBT / 正念训练 / AI 辅助开发",
-    x: 24,
-    y: 78,
-    tone: "lichen",
-    signal: "年轻群体身材焦虑与健康习惯管理需求",
-    method: "市场调研、竞品分析、产品架构、AI 辅助前端开发",
-    output: "数字健康平台、组件化界面、数据管理系统",
-  },
-  {
-    id: "tcm",
-    no: "05",
-    title: "TCM Knowledge",
-    org: "中医知识分享平台",
-    meta: "Knowledge Archive / 竞品观察 / 内容结构",
-    x: 54,
-    y: 86,
-    tone: "clay",
-    signal: "中医知识在线化与用户信息获取需求",
-    method: "平台观察、竞品分析、用户需求拆解",
-    output: "平台定位、内容结构与知识档案支持",
+    signal: "品牌定位、岗位需求与行业人才结构。",
+    method: "品牌研究、人才地图、候选人背景梳理。",
+    output: "推荐报告、调研材料和汇报 PPT。",
   },
   {
     id: "tools",
-    no: "06",
-    title: "Data Tools",
-    org: "Excel, SPSS, PowerBI, MySQL, Python",
-    meta: "数据分析 / 可视化 / 结构化判断",
+    no: "04",
+    title: "Data & Tools",
+    org: "Research, Analysis, Communication, Build",
+    meta: "Tool Matrix / Data Network / Structured Judgment",
     x: 82,
     y: 76,
     tone: "moss",
-    signal: "销售、库存、产品表现、用户互动等多源数据",
-    method: "指标整理、趋势拆解、可视化、结构化报告",
-    output: "让市场信号变成可沟通的策略依据",
+    signal: "销售、库存、产品表现与用户互动等多源信号。",
+    method: "指标整理、趋势拆解、可视化、结构化报告。",
+    output: "让市场信号变成可沟通、可执行的判断依据。",
   },
 ];
 
@@ -115,7 +89,6 @@ const signalIndex = signalNodes.reduce((acc, node) => {
 
 const signalEchoGroups = {
   field: ["beauty", "finance", "talent"],
-  case: ["health", "tcm"],
   tools: ["tools"],
 };
 
@@ -123,8 +96,6 @@ const signalTargetSelector = {
   beauty: '[data-signal-target="beauty"]',
   finance: '[data-signal-target="finance"]',
   talent: '[data-signal-target="talent"]',
-  health: '[data-signal-target="health"]',
-  tcm: '[data-signal-target="tcm"]',
   tools: "#tool-system",
 };
 
@@ -132,49 +103,46 @@ const notes = [
   {
     no: "01",
     signalId: "beauty",
-    nodeLabel: "Beauty Retail",
-    theme: "BEAUTY RETAIL SIGNALS",
+    nodeLabel: "BEAUTY RETAIL",
+    theme: "BEAUTY RETAIL",
     company: "Benefit / LVMH Beauty 贝玲妃",
     role: "旅游零售部｜市场实习生",
     time: "2026.01 - 2026.06",
     tone: "rose",
-    signal: "全球美妆趋势、新品反馈、免税渠道销售库存、竞品价格变化。",
-    method: "竞品分析、产品试用反馈、详情页与 Banner 更新、VM 陈列协调。",
-    output: "为新品本土化、渠道物料、培训支持和终端视觉呈现提供参考。",
-    overlayTitle: "BEAUTY SIGNAL",
-    sheetItems: ["Product Insight", "Retail Data", "VM Coordination"],
+    defaultLine: "Product Insight · Retail Data · VM Coordination",
+    signal: "新品趋势、竞品卖点、试用反馈",
+    method: "销售库存、定价监测、大促观察",
+    output: "详情页、Banner、VM 陈列与培训支持",
     tags: ["美妆零售", "新品趋势", "销售库存", "视觉陈列", "渠道协同"],
   },
   {
     no: "02",
     signalId: "finance",
-    nodeLabel: "Financial Products",
-    theme: "FINANCIAL MARKET NOTES",
+    nodeLabel: "FINANCIAL MARKET",
+    theme: "FINANCIAL MARKET",
     company: "华创证券",
     role: "市场分析助理",
     time: "2025.07 - 2025.09",
     tone: "blue",
-    signal: "基金产品表现、头部券商短视频营销、用户互动数据。",
-    method: "Excel 分析、SWOT、竞品对比、趋势图表制作。",
-    output: "形成市场分析报告、可视化图表和短视频脚本支持。",
-    overlayTitle: "DATA SLICE",
-    sheetItems: ["NAV Growth", "Annualized Return", "Market Share", "SWOT"],
+    defaultLine: "Fund Indicators · SWOT · Short-video Marketing",
+    signal: "基金产品表现、头部券商短视频营销、用户互动数据",
+    method: "Excel 分析、SWOT、竞品对比、趋势图表制作",
+    output: "市场分析报告、可视化图表和短视频脚本支持",
     tags: ["金融产品", "Excel 分析", "SWOT", "竞品研究", "趋势报告"],
   },
   {
     no: "03",
     signalId: "talent",
-    nodeLabel: "Brand & Talent",
-    theme: "BRAND & TALENT RESEARCH",
+    nodeLabel: "BRAND & TALENT",
+    theme: "BRAND & TALENT",
     company: "Korn Ferry 光辉国际",
     role: "高级人才搜寻助理",
     time: "2024.07 - 2024.09",
     tone: "mauve",
-    signal: "品牌定位、岗位需求、行业人才结构。",
-    method: "品牌研究、人才地图、候选人背景梳理。",
-    output: "支持推荐报告、调研材料和汇报 PPT 制作。",
-    overlayTitle: "TALENT MAP",
-    sheetItems: ["Brand Positioning", "Talent Demand", "Candidate Profile", "Report Output"],
+    defaultLine: "Brand Positioning · Talent Demand · Candidate Report",
+    signal: "品牌定位、岗位需求、行业人才结构",
+    method: "品牌研究、人才地图、候选人背景梳理",
+    output: "推荐报告、调研材料和汇报 PPT 制作",
     tags: ["品牌研究", "人才地图", "行业分析", "候选人评估", "报告表达"],
   },
 ];
@@ -182,28 +150,24 @@ const notes = [
 const cases = [
   {
     no: "01",
-    signalId: "health",
-    nodeLabel: "Digital Health",
-    title: "面向年轻群体身材焦虑问题的数字健康平台",
-    role: "国家级大学生创新创业训练计划｜项目负责人",
-    intro: "融合 CBT 与正念训练，面向情绪支持、健康习惯和可持续自我管理的数字健康平台。",
+    title: "数字健康平台",
+    role: "项目负责人",
+    fullTitle: "面向年轻群体身材焦虑问题的数字健康平台",
     method: "市场调研、15 款健身 APP 竞品分析、用户反馈拆解、产品架构设计。",
     output: "AI 辅助前端组件、数字健康平台原型、完整数据管理系统。",
-    flow: ["痛点识别", "市场调研", "竞品分析", "产品架构", "AI辅助开发", "数据系统"],
-    tags: ["数字健康", "身材焦虑", "CBT", "正念训练", "AI 辅助开发"],
+    flow: ["痛点识别", "市场调研", "竞品分析", "产品架构", "AI 辅助开发", "数据系统"],
+    tags: ["市场调研", "竞品分析", "产品架构", "AI 辅助开发"],
     tone: "lichen",
   },
   {
     no: "02",
-    signalId: "tcm",
-    nodeLabel: "Knowledge Archive",
     title: "中医知识分享平台",
-    role: "国家级大学生创新创业训练计划｜队员",
-    intro: "协助打造开放、便捷、科学的中医知识分享平台，支持平台定位和用户需求识别。",
+    role: "队员",
+    fullTitle: "中医知识分享平台",
     method: "市场调研、竞品分析、平台观察、用户需求识别。",
-    output: "竞品分析、用户需求识别、内容结构支持。",
+    output: "竞品分析、用户需求识别、平台定位与内容结构支持。",
     flow: ["平台观察", "竞品分析", "用户需求", "平台定位", "内容结构"],
-    tags: ["中医知识平台", "市场调研", "竞品分析", "用户需求", "内容结构"],
+    tags: ["市场调研", "竞品分析", "用户需求", "平台定位"],
     tone: "clay",
   },
 ];
@@ -224,16 +188,31 @@ const tools = [
   {
     title: "Communication",
     caption: "商业表达与内容转译",
-    items: ["PowerPoint", "报告撰写", "短视频脚本", "产品详情页", "广告 Banner"],
+    items: ["PowerPoint", "报告撰写", "短视频脚本", "Banner", "产品详情页"],
     tone: "rose",
   },
   {
     title: "Build",
     caption: "数字产品与 AI 辅助构建",
-    items: ["Vibe Coding", "AI辅助前端", "组件化设计", "产品架构", "数据管理系统"],
+    items: ["Vibe Coding", "AI 辅助前端", "组件化设计", "产品架构", "数据管理系统"],
     tone: "gold",
   },
 ];
+
+const financeMetrics = {
+  "NAV Growth": ["METHOD", "追踪基金净值增长，拆解产品表现。"],
+  "Annualized Return": ["METHOD", "比较年化回报率，辅助判断竞争位置。"],
+  "Market Share": ["SIGNAL", "观察市场占有率变化与头部产品强弱。"],
+  SWOT: ["METHOD", "把竞品优劣势整理为可沟通分析框架。"],
+  "Audience Engagement": ["OUTPUT", "支持短视频脚本与开户参与度优化。"],
+};
+
+const talentNodes = {
+  "Brand Positioning": "分析品牌市场定位与组织需求。",
+  "Talent Demand": "梳理岗位需求与行业人才结构。",
+  "Candidate Profile": "评估候选人技能背景与发展潜力。",
+  "Report Output": "输出推荐报告、调研材料与 PPT 汇报。",
+};
 
 function App() {
   const { activeSection, progress } = useScrollIndex();
@@ -250,7 +229,7 @@ function App() {
       <main>
         <Hero activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
         <FieldNotes activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
-        <CaseFiles activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
+        <CaseFiles setCursor={setCursor} />
         <ToolSystem activeSignal={activeSignal} setActiveSignal={setActiveSignal} setCursor={setCursor} />
         <Manifesto />
         <Contact setCursor={setCursor} />
@@ -314,8 +293,7 @@ function useActiveSignalOnScroll(setActiveSignal) {
 }
 
 function jumpToSignal(id) {
-  const selector = signalTargetSelector[id];
-  const target = selector ? document.querySelector(selector) : null;
+  const target = document.querySelector(signalTargetSelector[id]);
   target?.scrollIntoView({ behavior: "smooth", block: "center" });
   window.dispatchEvent(new CustomEvent("open-signal", { detail: { id } }));
 }
@@ -376,7 +354,7 @@ function Hero({ activeSignal, setActiveSignal, setCursor }) {
         <aside className="heroAside">
           <p className="systemLabel">SIGNAL SOURCES</p>
           <div className="asideRule" />
-          <p>Beauty Retail<br />Financial Markets<br />Brand & Talent<br />Digital Health<br />Data Tools</p>
+          <p>Beauty Retail<br />Financial Market<br />Brand & Talent<br />Data & Tools</p>
         </aside>
         <div className="heroTitleBlock">
           <p className="sectionLabel revealDelay1">Living Signal Archive / 生长型市场信号档案</p>
@@ -409,7 +387,6 @@ function Hero({ activeSignal, setActiveSignal, setCursor }) {
 function SignalMap({ activeSignal, setActiveSignal, setCursor }) {
   const active = signalIndex[activeSignal] || signalNodes[0];
   const [parallax, setParallax] = useState({ x: 0, y: 0 });
-
   const linePoints = useMemo(() => signalNodes.map((node) => `${node.x},${node.y}`).join(" "), []);
 
   return (
@@ -433,14 +410,13 @@ function SignalMap({ activeSignal, setActiveSignal, setCursor }) {
     >
       <div className="boardHeader">
         <span>Signal Map</span>
-        <span>2024-2026</span>
+        <span>Core Nodes / 04</span>
       </div>
       <div className="mapCanvas">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <polyline points={linePoints} />
-          <path d="M16 28 C34 12 54 18 67 23 S82 51 82 76" />
-          <path className="goldPath" d="M24 78 C38 62 48 55 67 23" />
-          <path className="echoPath" d="M54 86 C64 78 73 76 82 76" />
+          <path d="M16 30 C38 10 55 18 68 24 S80 46 82 76" />
+          <path className="goldPath" d="M16 30 C31 45 36 54 42 58" />
         </svg>
         {signalNodes.map((node, index) => (
           <button
@@ -454,7 +430,7 @@ function SignalMap({ activeSignal, setActiveSignal, setCursor }) {
             onFocus={() => setActiveSignal(node.id)}
             onMouseEnter={(event) => {
               setActiveSignal(node.id);
-              setCursor({ show: true, text: `OPEN ${node.title.toUpperCase()}`, x: event.clientX, y: event.clientY });
+              setCursor({ show: true, text: node.id === "tools" ? "TRACE TOOLS" : `OPEN ${node.title.toUpperCase()}`, x: event.clientX, y: event.clientY });
             }}
             style={{ left: `${node.x}%`, top: `${node.y}%`, animationDelay: `${index * 140 + 320}ms` }}
           >
@@ -529,26 +505,27 @@ function FieldNotes({ activeSignal, setActiveSignal, setCursor }) {
 
   return (
     <section className="section fieldNotes shell" id="field-notes">
-      <MiniSignalEcho title="SIGNAL MAP / 01-03" ids={signalEchoGroups.field} activeSignal={activeSignal} />
+      <MiniSignalEcho title="SIGNAL MAP / CORE NOTES" ids={signalEchoGroups.field} activeSignal={activeSignal} />
       <SectionHeading
         index="01"
         label="FIELD NOTES"
         title="洞察笔记"
-        text="来自美妆零售、金融市场与品牌人才研究的三组市场信号。"
+        text="三组核心职业信号从首页 Map 中展开：美妆零售、金融市场、品牌与人才研究。"
       />
-      <div className="noteList">
+      <div className="noteList playableNotes">
         {notes.map((note) => {
           const isOpen = openNote === note.no;
+          const cursorText = note.signalId === "beauty" ? "OPEN BEAUTY SIGNAL" : note.signalId === "finance" ? "TRACE FINANCE SIGNAL" : "VIEW TALENT MAP";
           return (
             <article
-              className={`fieldNote ${note.tone} ${isOpen ? "open" : ""}`}
+              className={`fieldNote playableNote ${note.tone} ${isOpen ? "open" : ""}`}
               data-signal-id={note.signalId}
               data-signal-target={note.signalId}
               key={note.theme}
               onMouseEnter={(event) => {
                 setOpenNote(note.no);
                 setActiveSignal(note.signalId);
-                setCursor({ show: true, text: note.signalId === "beauty" ? "OPEN BEAUTY SIGNAL" : note.signalId === "finance" ? "TRACE FINANCE SIGNAL" : "VIEW TALENT MAP", x: event.clientX, y: event.clientY });
+                setCursor({ show: true, text: cursorText, x: event.clientX, y: event.clientY });
               }}
               onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
               onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
@@ -559,35 +536,17 @@ function FieldNotes({ activeSignal, setActiveSignal, setCursor }) {
             >
               <div className="noteIndex">{note.no}</div>
               <div className="noteMain">
-                <p className="sourceNode">SOURCE NODE / {note.nodeLabel}</p>
+                <p className="sourceNode">{note.no} / {note.nodeLabel}</p>
                 <p className="noteTheme">{note.theme}</p>
                 <h3>{note.company}</h3>
                 <p className="noteRole">
                   {note.role} <span>{note.time}</span>
                 </p>
-                <div className="closedLabels" aria-hidden={isOpen}>
-                  <span>SIGNAL</span>
-                  <span>METHOD</span>
-                  <span>OUTPUT</span>
-                </div>
-                <div className="signalTriptych">
-                  <div>
-                    <span>SIGNAL</span>
-                    <p>{note.signal}</p>
-                  </div>
-                  <div>
-                    <span>METHOD</span>
-                    <p>{note.method}</p>
-                  </div>
-                  <div>
-                    <span>OUTPUT</span>
-                    <p>{note.output}</p>
-                  </div>
-                </div>
+                <p className="noteDefaultLine">{note.defaultLine}</p>
+                <PlayLayer note={note} />
               </div>
               <aside className="noteSide">
-                <SignalSheet note={note} />
-                <div className="tagCloud">
+                <div className="tagCloud magneticTags">
                   {note.tags.map((tag) => (
                     <span key={tag}>{tag}</span>
                   ))}
@@ -601,74 +560,128 @@ function FieldNotes({ activeSignal, setActiveSignal, setCursor }) {
   );
 }
 
-function SignalSheet({ note }) {
+function PlayLayer({ note }) {
+  if (note.signalId === "beauty") return <BeautySignalPack />;
+  if (note.signalId === "finance") return <FinanceDataSlice />;
+  return <TalentMappingBoard />;
+}
+
+function BeautySignalPack() {
+  const cards = [
+    ["Product Insight", "新品趋势、竞品卖点、试用反馈"],
+    ["Retail Data", "销售库存、定价监测、大促观察"],
+    ["Visual Signal", "详情页、Banner、VM 陈列"],
+  ];
   return (
-    <div className={`signalSheet ${note.tone}`}>
-      <small>{note.overlayTitle}</small>
-      {note.signalId === "finance" && (
-        <svg viewBox="0 0 120 38" aria-hidden="true">
-          <polyline points="2,29 22,22 43,24 64,11 88,16 118,5" />
-        </svg>
-      )}
-      {note.signalId === "talent" && <div className="talentDots"><i /><i /><i /><i /></div>}
-      {note.sheetItems.map((item) => (
-        <span key={item}>{item}</span>
+    <div className="playLayer beautyPack">
+      {cards.map(([title, text]) => (
+        <div className="beautyMiniCard" key={title}>
+          <small>{title}</small>
+          <p>{text}</p>
+        </div>
       ))}
     </div>
   );
 }
 
-function CaseFiles({ activeSignal, setActiveSignal, setCursor }) {
-  const [openCase, setOpenCase] = useState("01");
+function FinanceDataSlice() {
+  const [activeMetric, setActiveMetric] = useState("NAV Growth");
+  const [label, text] = financeMetrics[activeMetric];
+  return (
+    <div className="playLayer dataSlice">
+      <svg viewBox="0 0 220 72" aria-hidden="true">
+        <polyline points="4,56 34,48 64,51 94,32 126,36 158,18 216,25" />
+      </svg>
+      <div className="metricChips">
+        {Object.keys(financeMetrics).map((metric) => (
+          <button className={activeMetric === metric ? "active" : ""} key={metric} onClick={(event) => {
+            event.stopPropagation();
+            setActiveMetric(metric);
+          }}>
+            {metric}
+          </button>
+        ))}
+      </div>
+      <div className="metricReadout">
+        <small>{label}</small>
+        <p>{text}</p>
+      </div>
+    </div>
+  );
+}
 
-  useEffect(() => {
-    const open = (event) => {
-      const item = cases.find((caseItem) => caseItem.signalId === event.detail.id);
-      if (item) setOpenCase(item.no);
-    };
-    window.addEventListener("open-signal", open);
-    return () => window.removeEventListener("open-signal", open);
-  }, []);
+function TalentMappingBoard() {
+  const [activeTalent, setActiveTalent] = useState("Brand Positioning");
+  const [stamped, setStamped] = useState(false);
+  return (
+    <div className="playLayer talentBoard">
+      <svg viewBox="0 0 220 96" aria-hidden="true">
+        <path d="M24 62 C64 20 126 26 184 68" />
+        <path d="M42 74 C86 82 128 68 168 28" />
+      </svg>
+      <div className="talentNodeGrid">
+        {Object.keys(talentNodes).map((node) => (
+          <button
+            className={activeTalent === node ? "active" : ""}
+            key={node}
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveTalent(node);
+              if (node === "Report Output") setStamped(true);
+            }}
+            onMouseEnter={() => setActiveTalent(node)}
+          >
+            <i />
+            {node}
+          </button>
+        ))}
+      </div>
+      <aside className="candidateNote">
+        <small>Candidate Note</small>
+        <p>{talentNodes[activeTalent]}</p>
+        {stamped && <strong>PPT / REPORT</strong>}
+      </aside>
+    </div>
+  );
+}
+
+function CaseFiles({ setCursor }) {
+  const [openCase, setOpenCase] = useState("01");
 
   return (
     <section className="section caseFiles" id="case-files">
       <div className="shell">
-        <MiniSignalEcho title="SIGNAL MAP / 04-05" ids={signalEchoGroups.case} activeSignal={activeSignal} />
+        <SupportingEcho />
         <SectionHeading
           index="02"
-          label="CASE FILES"
-          title="项目档案"
-          text="两组从用户问题、市场研究到产品结构的项目记录。"
+          label="SUPPORTING CASE FILES"
+          title="方法能力补充"
+          text="除实习经历外，以下项目用于补充展示我在市场调研、竞品分析、产品架构和 AI 辅助开发方面的方法能力。"
         />
-        <div className="caseDrawerList">
+        <div className="caseDrawerList supportingCases">
           {cases.map((item) => {
             const isOpen = openCase === item.no;
             return (
               <article
-                className={`caseDrawer ${item.tone} ${isOpen ? "open" : ""}`}
-                data-signal-id={item.signalId}
-                data-signal-target={item.signalId}
-                key={item.title}
+                className={`caseDrawer supportingCase ${item.tone} ${isOpen ? "open" : ""}`}
+                data-side-case={item.no}
+                key={item.fullTitle}
                 onMouseEnter={(event) => {
                   setOpenCase(item.no);
-                  setActiveSignal(item.signalId);
-                  setCursor({ show: true, text: item.signalId === "health" ? "EXPAND HEALTH CASE" : "EXPAND KNOWLEDGE CASE", x: event.clientX, y: event.clientY });
+                  setCursor({ show: true, text: "EXPAND SIDE CASE", x: event.clientX, y: event.clientY });
                 }}
                 onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
                 onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
-                onClick={() => {
-                  setOpenCase(isOpen ? "" : item.no);
-                  setActiveSignal(item.signalId);
-                }}
+                onClick={() => setOpenCase(isOpen ? "" : item.no)}
               >
                 <div className="drawerLabel">
-                  <span>CASE FILE {item.no}</span>
+                  <span>SIDE CASE {item.no}</span>
                   <strong>{item.role}</strong>
-                  <em>SOURCE NODE / {item.nodeLabel}</em>
+                  <em>SUPPORTING EVIDENCE</em>
                 </div>
                 <div className="drawerTitle">
-                  <h3>{item.title}</h3>
-                  <p>{item.intro}</p>
+                  <h3>{item.fullTitle}</h3>
+                  <p>{item.tags.join(" / ")}</p>
                 </div>
                 <div className="drawerMeta">
                   <div>
@@ -687,11 +700,6 @@ function CaseFiles({ activeSignal, setActiveSignal, setCursor }) {
                     <small>OUTPUT</small>
                     <p>{item.output}</p>
                   </div>
-                  <div className="tagCloud">
-                    {item.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
                 </div>
               </article>
             );
@@ -703,7 +711,7 @@ function CaseFiles({ activeSignal, setActiveSignal, setCursor }) {
 }
 
 function ToolSystem({ activeSignal, setActiveSignal, setCursor }) {
-  const [activeTool, setActiveTool] = useState("Research");
+  const [activeTool, setActiveTool] = useState("Analysis");
 
   useEffect(() => {
     const open = (event) => {
@@ -721,15 +729,15 @@ function ToolSystem({ activeSignal, setActiveSignal, setCursor }) {
       data-signal-target="tools"
       onMouseEnter={() => setActiveSignal("tools")}
     >
-      <MiniSignalEcho title="SIGNAL MAP / 06" ids={signalEchoGroups.tools} activeSignal={activeSignal} />
+      <MiniSignalEcho title="SIGNAL MAP / DATA & TOOLS" ids={signalEchoGroups.tools} activeSignal={activeSignal} />
       <SectionHeading
         index="03"
         label="TOOL MATRIX"
         title="工具矩阵"
-        text="研究、分析、表达与搭建共同构成我的工作系统。"
+        text="Data & Tools 节点的展开网络：研究、分析、表达与搭建共同构成我的工作系统。"
       />
-      <div className={`abilityNetwork ${activeSignal === "tools" ? "mapLinked" : ""}`}>
-        <div className="matrixCore">DATA TOOLS<br />NODE 06</div>
+      <div className={`abilityNetwork mapLinked hasActive active-${activeTool.toLowerCase()}`}>
+        <div className="matrixCore">DATA & TOOLS<br />NODE 04</div>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <path d="M18 24 C36 18 56 20 78 28" />
           <path d="M22 78 C38 58 62 48 80 24" />
@@ -739,10 +747,11 @@ function ToolSystem({ activeSignal, setActiveSignal, setCursor }) {
           <article
             className={`abilityCell ${group.tone} ${activeTool === group.title ? "active" : ""}`}
             key={group.title}
+            onClick={() => setActiveTool(group.title)}
             onMouseEnter={(event) => {
               setActiveTool(group.title);
               setActiveSignal("tools");
-              setCursor({ show: true, text: "TRACE TOOL SYSTEM", x: event.clientX, y: event.clientY });
+              setCursor({ show: true, text: "TRACE TOOLS", x: event.clientX, y: event.clientY });
             }}
             onMouseMove={(event) => setCursor((current) => ({ ...current, x: event.clientX, y: event.clientY }))}
             onMouseLeave={() => setCursor({ show: false, text: "", x: 0, y: 0 })}
@@ -787,6 +796,25 @@ function MiniSignalEcho({ title, ids, activeSignal }) {
             </React.Fragment>
           );
         })}
+      </div>
+    </aside>
+  );
+}
+
+function SupportingEcho() {
+  return (
+    <aside className="miniSignalEcho supportingEcho" aria-label="Supporting Evidence">
+      <p>SUPPORTING EVIDENCE</p>
+      <div>
+        <button className="lichen active" type="button">
+          <i />
+          <span>Digital Health</span>
+        </button>
+        <em />
+        <button className="clay active" type="button">
+          <i />
+          <span>TCM Knowledge</span>
+        </button>
       </div>
     </aside>
   );
